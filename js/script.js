@@ -14,57 +14,70 @@ let countChar = () => {
 
 textArea.addEventListener('input', countChar);
 
-let addTweet=() => {
-    let tweet = {
-        id:id, // unique value 
+let addTweet = () => {
+	let tweet = {
+		id: id, // unique value 
 		contents: textArea.value,
-		date: new Date()
-    }
-    tweetList.push(tweet);
+		date: new Date(),
+		liked: false
+	}
+	tweetList.push(tweet);
 
-    console.log(tweet)
-    render(tweetList);
-    id++;
+	console.log(tweet)
+	render(tweetList);
+	id++;
 
 }
 
-let retweet =(originid) =>{
+let retweet = (originid) => {
 
-    // 1. find the tweet that you want to retweet
-    let originTweet = tweetList.find((item)=> item.id == originid)
+	// 1. find the tweet that you want to retweet
+	let originTweet = tweetList.find((item) => item.id == originid)
 
-    // 2. make the retweet object and it will have same contents with original tweet and parents id 
-    let retweetObject = {
-        id:id,
-        contents: originTweet.contents,
-        originTweetID:originid  // referencing
-    }
+	// 2. make the retweet object and it will have same contents with original tweet and parents id 
+	let retweetObject = {
+		id: id,
+		contents: originTweet.contents,
+		originTweetID: originid,  // referencing
+		liked: false
+	}
 
-    //3. push retweet object into tweetList
-    tweetList.push(retweetObject);
+	//3. push retweet object into tweetList
+	tweetList.push(retweetObject);
 
-    //5.after everything done, make sure increase the id 
-    id++
-    
-    //6. render tweetList 
-    render(tweetList)
-    console.log(tweetList);
+	//5.after everything done, make sure increase the id 
+	id++
+
+	//6. render tweetList 
+	render(tweetList)
+	console.log(tweetList);
 }
 
 //delete TWeet 
-let deleteTweet = (deleteId) =>{
-    // 1. remove original tweeter id and retweet id 
-    tweetList = tweetList.filter(e=> e.id !== deleteId && e.originTweetID !== deleteId )
-    
-    // 2. show again. 
-    render(tweetList);
+let deleteTweet = (deleteId) => {
+	// 1. remove original tweeter id and retweet id 
+	tweetList = tweetList.filter(e => e.id !== deleteId && e.originTweetID !== deleteId)
+
+	// 2. show again. 
+	render(tweetList);
 
 }
 
+//like Tweet
+function like(a) {
+	let index = tweetList.findIndex((item)=> item.id == a)
+	const getTweet = tweetList[index];
+	getTweet.liked = !getTweet.liked;
+
+	!getTweet.liked
+		? (document.getElementById(`like-${a}`).innerHTML = "currentColor")
+		: (document.getElementById(`like-${a}`).innerHTML = "pink");
+	render(tweetList);
+}
 
 // Show on screen 
-let render= (array) =>{
-    let htmlForTweet = array.map((item)=>`<div class="tweet-wrap">
+let render = (array) => {
+	let htmlForTweet = array.map((item) => `<div class="tweet-wrap">
 	<div class="tweet-header">
 		<img src="https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png"
 			alt="" class="avator">
@@ -92,7 +105,7 @@ let render= (array) =>{
 		</div>
 
 		<div class="retweets">
-		<button style="background: white; border: none;"> 
+		<button onclick="retweet(${item.id})" style="background: white; border: none;"> 
 			<svg class="feather feather-repeat sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg"
 				width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
 				stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -105,9 +118,11 @@ let render= (array) =>{
 		</div>
 
 		<div class="likes">
-		<button style="background: white; border: none;"> 
-			<svg class="feather feather-heart sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg"
-				width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+		<button onclick="like(${item.id})" style="background: white; border: none;"> 
+			<svg id="like-${
+		item.id
+		}" class="feather feather-heart sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg"
+				width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="${!item.liked ? "currentColor" : "pink"}"
 				stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 				<path
 					d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
@@ -120,7 +135,7 @@ let render= (array) =>{
 		</div>
 
 		<div class="message">
-		<button style="background: white; border: none;"> 
+		<button onclick="deleteTweet(${item.id})" style="background: white; border: none;"> 
 			<svg class="feather feather-send sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg"
 				width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
 				stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -131,7 +146,7 @@ let render= (array) =>{
 		</div>
 	</div>
 </div>`).join('')
-    document.getElementById('tweetCards').innerHTML= htmlForTweet
+	document.getElementById('tweetCards').innerHTML = htmlForTweet
 
 }
 
