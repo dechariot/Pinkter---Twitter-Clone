@@ -17,11 +17,12 @@ textArea.addEventListener('input', countChar);
 let addTweet=() => {
     let tweet = {
         id:id, // unique value 
-        contents: textArea.value
+		contents: textArea.value,
+		date: new Date()
     }
     tweetList.push(tweet);
 
-    
+    console.log(tweet)
     render(tweetList);
     id++;
 
@@ -68,7 +69,7 @@ let render= (array) =>{
 		<img src="https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png"
 			alt="" class="avator">
 		<div class="tweet-header-info">
-			* based snow bunny <span>@yumjeezy</span><span>. Jun 27
+			* based snow bunny <span>@yumjeezy</span><span> ${moment(item.date).fromNow()}
 			</span>
 			<p id="tweetText">🔥${item.contents}
 				</p>
