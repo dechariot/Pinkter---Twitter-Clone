@@ -129,6 +129,15 @@ function like(a) {
 
 // Show on screen 
 let render = (array) => {
+	array.sort((a,b)=> {
+		if (a.id > b.id) {
+			return -1;
+		}
+		if (b.id > a.id) {
+			return 1;
+		}
+		return 0
+	})
 	let htmlForTweet = array.map((item) => `<div class="tweet-wrap" style="border-radius:20px">
 	<div class="tweet-header">
 		<img src="https://i1.sndcdn.com/avatars-000500544273-6kcyh0-t500x500.jpg"
