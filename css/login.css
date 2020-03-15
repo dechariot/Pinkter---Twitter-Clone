@@ -1,5 +1,5 @@
 body {
-    background-color: palevioletred;
+    background-color: #E0245E;
     color: white;
 }
 
@@ -31,7 +31,8 @@ body {
 
 .panel-body {
     padding-top: 30px;
-    background-color: rgba(2555,255,255,.3);
+    background-color: #E0245E;
+    border: 2px solid white;
 }
 
 #particles {
@@ -52,7 +53,7 @@ body {
   width: 150px;
   height: 150px;
   display: block;
-  fill: #525151;
+  fill: #E0245E;
 }
 
 .iconmelon:after,
@@ -67,16 +68,16 @@ body {
 
 #about{
     color: white;
-    background-color: palevioletred;
+    background-color: #E0245E;
     
 }
 
 #signUpHeader{
-    background-color: palevioletred;
+    background-color:#E0245E;
 }
 .input-group-addon {
-    background-color: rgb(245,199,214);
-    border-color: rgb(245,199,214);
+    background-color: #E0245E;
+    border-color :#E0245E;
 }
 
 .input-group-addon:first-child, .fa-twitter, h2 {
@@ -84,11 +85,17 @@ body {
 }
 
 .form-control{
-    border-color: rgb(245,199,214);
+    border-color:#E0245E;
+    font-size: 1.5rem;
+    color: black;
+    font-weight: bold;
 }
 
+
 #signUpBtn{
-    color: grey;
+    color: #E0245E;
+    font-weight: bold;
+    background-color: white;
 
 }
 
