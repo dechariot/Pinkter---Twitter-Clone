@@ -1,3 +1,27 @@
+const getAppState = () => {
+	return (
+	  JSON.parse(localStorage.getItem("data")) || {
+		status: false,
+		id: 0,
+		tweets: [],
+		loggedInUser: "null",
+		loggedInName: "null"
+	  }
+	);
+  };
+
+  let appState = getAppState();
+
+  const getAPI = async () => {
+
+	document.getElementById("displayHandle").innerText =
+	  `@${appState.loggedInUser}`;
+	  document.getElementById("displayName").innerText =
+	  `${appState.loggedInName}`;
+  }
+
+getAPI();
+
 let textArea = document.getElementById('contentsBox');
 let tweetList = []
 let id = 0;
@@ -14,10 +38,37 @@ let countChar = () => {
 
 textArea.addEventListener('input', countChar);
 
+//Turn hashtags into links
+function linkify(str){
+    // order matters
+    var re = [
+        "\\b((?:https?|ftp)://[^\\s\"'<>]+)\\b",
+        "\\b(www\\.[^\\s\"'<>]+)\\b",
+        "\\b(\\w[\\w.+-]*@[\\w.-]+\\.[a-z]{2,6})\\b", 
+        "#([a-z0-9]+)"];
+	re = new RegExp(re.join('|'), "gi");
+	
+    return str.replace(re, function(match, url, www, mail, twitler){
+        if(url)
+            return "<a href=\"" + url + "\">" + url + "</a>";
+        if(www)
+            return "<a href=\"http://" + www + "\">" + www + "</a>";
+        if(mail)
+            return "<a href=\"mailto:" + mail + "\">" + mail + "</a>";
+        if(twitler)
+            return "<a href=\"foo?bar=" + twitler + "\">#" + twitler + "</a>";
+
+        // shouldnt get here, but just in case
+        return match;
+    });
+}
+
 let addTweet = () => {
+	text = linkify(textArea.value);
+
 	let tweet = {
 		id: id, // unique value 
-		contents: textArea.value,
+		contents: text,
 		date: new Date(),
 		liked: false
 	}
@@ -82,7 +133,7 @@ let render = (array) => {
 		<img src="https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png"
 			alt="" class="avator">
 		<div class="tweet-header-info">
-			* based snow bunny <span>@yumjeezy</span><span> ${moment(item.date).fromNow()}
+			${appState.loggedInName} <span>@${appState.loggedInUser}</span><span> ${moment(item.date).fromNow()}
 			</span>
 			<p id="tweetText">🔥${item.contents}
 				</p>
@@ -150,7 +201,14 @@ let render = (array) => {
 
 }
 
-
+//signout function
+let signOut = () => {
+	appState.status = false;
+	appState.loggedInUser = "";
+	window.open("index.html");
+	saveAppState(appState);
+  };
+  
 
 //Follow Button Effect
 $(document).ready(

@@ -25,7 +25,7 @@
                 <ul class="hi mr-auto">
 
                 </ul>
-                <button class="btn text-white my-2 my-sm-0" type="submit">Logout</button>
+                <button class="btn text-white my-2 my-sm-0" type="submit" onclick=signOut()>Logout</button>
                 </form>
             </div>
         </nav>
@@ -38,14 +38,16 @@
                         src="https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png"
                         alt="Card image cap">
                     <div class="card-body">
-                        <h5 class="card-title">@twitterhandle</h5>
+                        <h5 id = "displayName" class="card-title"></h5>
+                        <h6 id = "displayHandle" class="card-title"></h6>
+        
                         <p class="card-text">Bio</p>
-                        <a href="#" class="btn btn-primary">Follow</a>
+                        <a href="#" class="btn  text-white">Follow</a>
                     </div>
                 </div>
             </div>
             <button onclick="addTweet()" type="button" style="border-radius: 30px; font-size: 15px; font-weight:bold;"
-                class="btn btn-primary btn-lg btn-block mt-4">Tweet</button>
+                class="btn btn-lg btn-block mt-4 text-white">Tweet</button>
 
             <div class="card mt-4" style="width: 18rem;">
                 <div class="card-header">
