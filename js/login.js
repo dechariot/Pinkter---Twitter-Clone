@@ -115,11 +115,11 @@ var TxtType = function (el, toRotate, period) {
     if (signInUsername.value.length > 0) {
       signUpBtn.removeAttribute("disabled");
     } else {
-      signUpBtn.setAttribute("disabled", "disabled");
+      signUpBtn.setAttribute("enabled");
     }
   });
   
-  function logIn() {
+  function signUp() {
     let userAt = document.getElementById("signInUsername").value;
     let userName = document.getElementById("user").value;
     let myObj = {
@@ -129,7 +129,7 @@ var TxtType = function (el, toRotate, period) {
       id : null
       // password: "******"
     };
-    let myObj_serialized = JSON.stringify(myObj);
+    let myObj_serialized = JSON.stringify(myObj); //turn to string
     localStorage.setItem("data", myObj_serialized);
     console.log(myObj)
     window.open("newsfeed.html");

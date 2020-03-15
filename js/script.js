@@ -1,18 +1,15 @@
-const getAppState = () => {
+let loadUserData = () => {
 	return (
 	  JSON.parse(localStorage.getItem("data")) || {
-		status: false,
-		id: 0,
-		tweets: [],
 		loggedInUser: "null",
 		loggedInName: "null"
 	  }
 	);
   };
 
-  let appState = getAppState();
+  let appState = loadUserData();
 
-  const getAPI = async () => {
+  const getData= async () => {
 
 	document.getElementById("displayHandle").innerText =
 	  `@${appState.loggedInUser}`;
@@ -20,7 +17,7 @@ const getAppState = () => {
 	  `${appState.loggedInName}`;
   }
 
-getAPI();
+getData();
 
 let textArea = document.getElementById('contentsBox');
 let tweetList = []
@@ -30,60 +27,64 @@ let countChar = () => {
 	let remainingChar = 140 - textArea.value.length;
 	if (remainingChar < 0) {
 		document.getElementById('charCountArea').innerHTML = `${remainingChar}`.fontcolor('red');
-		document.getElementById("addATweetLeft").disabled = true; //disable both tweet buttons
-		document.getElementById("addATweetMiddle").disabled = true; 
 
 	} else {
-		document.getElementById('charCountArea').innerHTML = `${remainingChar}`
-		document.getElementById('addATweetLeft').disabled = false; //enable tweet button again
-		document.getElementById("addATweetMiddle").disabled = false; 
+		document.getElementById('charCountArea').innerHTML = `${remainingChar}`.fontcolor('white');
 
 	}
 }
 
 textArea.addEventListener('input', countChar);
 
-//Turn hashtags into links
-function linkify(str){
-    // order matters
-    var re = [
-        "\\b((?:https?|ftp)://[^\\s\"'<>]+)\\b",
-        "\\b(www\\.[^\\s\"'<>]+)\\b",
-        "\\b(\\w[\\w.+-]*@[\\w.-]+\\.[a-z]{2,6})\\b", 
-        "#([a-z0-9]+)"];
-	re = new RegExp(re.join('|'), "gi");
+// //Turn hashtags into links
+// function linkify(str){
+//     // order matters
+//     var re = [
+//         "\\b((?:https?|ftp)://[^\\s\"'<>]+)\\b",
+//         "\\b(www\\.[^\\s\"'<>]+)\\b",
+//         "\\b(\\w[\\w.+-]*@[\\w.-]+\\.[a-z]{2,6})\\b", 
+//         "#([a-z0-9]+)"];
+// 	re = new RegExp(re.join('|'), "gi");
+// 	console.log(re)
 	
-    return str.replace(re, function(match, url, www, mail, twitler){
-        if(url)
-            return "<a href=\"" + url + "\">" + url + "</a>";
-        if(www)
-            return "<a href=\"http://" + www + "\">" + www + "</a>";
-        if(mail)
-            return "<a href=\"mailto:" + mail + "\">" + mail + "</a>";
-        if(twitler)
-            return "<a href=\"foo?bar=" + twitler + "\">#" + twitler + "</a>";
 
-        // shouldnt get here, but just in case
-        return match;
-    });
-}
+
+//     return str.replace(re, function(match, url, www, mail, twitler){
+//         if(url)
+//             return "<a href=\"" + url + "\">" + url + "</a>";
+//         if(www)
+//             return "<a href=\"http://" + www + "\">" + www + "</a>";
+//         if(mail)
+//             return "<a href=\"mailto:" + mail + "\">" + mail + "</a>";
+//         if(twitler)
+// 			return "<a href=\"javascript:;" + "\" id =\""+ "hashTag"+"\">#" + twitler + "</a>";
+		
+// 		// return "<a href=\"javascript:;" + "\" onclick =\""+ `${searchHashtag("hi")}`+"\">#" + twitler + "</a>";
+// 		// return "<button\ onclick =\""+ searchHashtag("hi")+"\">#" + twitler + "</button>";
+// 		// shouldnt get here, but just in case
+	
+//         return match;
+// 	}); 
+// 	document.getElementById("hashTag").addEventListener("click", searchHashtag("hi"));
+// }
+
+
 
 let addTweet = () => {
-	text = linkify(textArea.value);
-
+	text = textArea.value;
+	
 	let tweet = {
 		id: id, // unique value 
 		contents: text,
 		date: new Date(),
-		liked: false
+		liked: false,
+		hashtags: []
 	}
 	tweetList.push(tweet);
 
 	console.log(tweet)
 	render(tweetList);
 	id++;
-	textArea.value = "";
-	document.getElementById("charCountArea").innerHTML = `140`
 
 }
 
@@ -93,11 +94,13 @@ let retweet = (originid) => {
 	let originTweet = tweetList.find((item) => item.id == originid)
 
 	// 2. make the retweet object and it will have same contents with original tweet and parents id 
+
 	let retweetObject = {
 		id: id,
-		contents: originTweet.contents,
+		contents: originTweet['contents'],
 		originTweetID: originid,  // referencing
-		liked: false
+		liked: false,
+		hashtags: []
 	}
 
 	//3. push retweet object into tweetList
@@ -151,7 +154,7 @@ let render = (array) => {
 		<div class="tweet-header-info">
 			${appState.loggedInName} <span>@${appState.loggedInUser}</span><span> ${moment(item.date).fromNow()}
 			</span>
-			<p id="tweetText" style="word-warp:break-word">🔥${item.contents}
+			<p id="tweetText" style="word-warp:break-word">🔥${hashtagify(item.id)}
 				</p>
 		</div>
 	</div>
@@ -221,14 +224,34 @@ let signOut = () => {
   };
   
 
-//Follow Button Effect
-$(document).ready(
 
-	function iniciar() {
-		$('.follow').on("click", function () {
-			$('.follow').css('background-color', '#34CF7A');
-			$('.follow').html('<div class="icon-ok"></div> Following');
-		});
-	}
 
-);
+function searchHashtag(hashtag) {
+	console.log(tweetList)
+
+	let hashtagList = tweetList.filter(item => {
+		if (item.contents.includes(hashtag))
+			return item;
+	});
+	console.log(hashtagList)
+render(hashtagList);
+}
+
+function hashtagify(i) {
+	let index = tweetList.findIndex(item => item.id == i);
+  
+	let newValue = tweetList[index].contents.split(" ");
+  
+	let text = newValue.map(word => {
+
+		if (word[0] === "#") {
+		  tweetList[index].hashtags.push(word);
+		  return `
+				  <a href ="#" onclick="searchHashtag('${word}')">${word}</a>            
+			  `;
+		} else return word;
+	  })
+	  .join(" ");
+	return text;
+  }
+  
