@@ -132,7 +132,7 @@ function like(a) {
 
 	!getTweet.liked
 		? (document.getElementById(`like-${a}`).innerHTML = "currentColor")
-		: (document.getElementById(`like-${a}`).innerHTML = "pink");
+		: (document.getElementById(`like-${a}`).innerHTML = "#E0245E");
 	render(tweetList);
 }
 
@@ -171,7 +171,7 @@ let render = (array) => {
 				</path>
 			</svg>
 			</button>
-			<div class="comment-count">33</div>
+			<div class="comment-count">  </div>
 		</div>
 
 		<div class="retweets">
@@ -184,7 +184,7 @@ let render = (array) => {
 				<polyline points="7 23 3 19 7 15"></polyline>
 				<path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
 			</svg></button>
-			<div class="retweet-count">397</div>
+			<div class="retweet-count">   </div>
 		</div>
 
 		<div class="likes">
@@ -192,7 +192,7 @@ let render = (array) => {
 			<svg id="like-${
 		item.id
 		}" class="feather feather-heart sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg"
-				width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="${!item.liked ? "currentColor" : "pink"}"
+				width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="${!item.liked ? "currentColor" : "#E0245E"}"
 				stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
 				<path
 					d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
@@ -200,7 +200,7 @@ let render = (array) => {
 			</svg>
 			</button>
 			<div class="likes-count">
-				2.6k
+				
 			</div>
 		</div>
 
@@ -247,11 +247,10 @@ function hashtagify(i) {
 		if (word[0] === "#") {
 		  tweetList[index].hashtags.push(word);
 		  return `
-				  <a href ="#" onclick="searchHashtag('${word}')">${word}</a>            
+				  <a  style="color:#E0245E" href ="#" onclick="searchHashtag('${word}')">${word}</a>            
 			  `;
 		} else return word;
 	  })
 	  .join(" ");
 	return text;
   }
-  
