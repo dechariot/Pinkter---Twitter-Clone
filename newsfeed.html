@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </div>
-            <button onclick="addTweet()" type="button" style="border-radius: 30px; font-size: 1.1rem; font-weight:bold;"
+            <button id = "addATweetLeft" onclick="addTweet()" type="button" style="border-radius: 30px; font-size: 1.1rem; font-weight:bold;"
                 class="btn btn-lg btn-block mt-4 text-white ">Tweet</button>
 
             <div class="card mt-4" style="width: 18rem;">
@@ -76,12 +76,12 @@
                         <div class="container d-flex" style="padding: 1rem 0 0 0;">
                         <div id="leftBtn">
                         <div id="charBadge" class="badge badge-pill badge-primary ml-2" style="display: flex;align-items: center;width: 50%;justify-content: center;">
-                            <div id="charCountArea ">140</div>
+                            <div id="charCountArea">140</div>
                         </div>
                         </div>
                         
                         <div id="rightBtn">
-                            <button class="btn rounded-pill addTweetBtn"  onclick="addTweet()" style="width: 100%;">Tweet</button>
+                            <button class="btn rounded-pill" id= "addATweetMiddle"  onclick="addTweet()" style="width: 100%;">Tweet</button>
                         </div>
                     </div>
                     </div>

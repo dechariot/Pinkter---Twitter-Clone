@@ -30,9 +30,13 @@ let countChar = () => {
 	let remainingChar = 140 - textArea.value.length;
 	if (remainingChar < 0) {
 		document.getElementById('charCountArea').innerHTML = `${remainingChar}`.fontcolor('red');
+		document.getElementById("addATweetLeft").disabled = true; //disable both tweet buttons
+		document.getElementById("addATweetMiddle").disabled = true; 
 
 	} else {
 		document.getElementById('charCountArea').innerHTML = `${remainingChar}`
+		document.getElementById('addATweetLeft').disabled = false; //enable tweet button again
+		document.getElementById("addATweetMiddle").disabled = false; 
 
 	}
 }
@@ -78,6 +82,8 @@ let addTweet = () => {
 	console.log(tweet)
 	render(tweetList);
 	id++;
+	textArea.value = "";
+	document.getElementById("charCountArea").innerHTML = `140`
 
 }
 
@@ -197,12 +203,7 @@ let render = (array) => {
 
 		<div class="message">
 		<button onclick="deleteTweet(${item.id})" style="background: white; border: none;"> 
-			<svg class="feather feather-send sc-dnqmqq jxshSx" xmlns="http://www.w3.org/2000/svg"
-				width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-				stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-				<line x1="22" y1="2" x2="11" y2="13"></line>
-				<polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-			</svg>
+		<i class="fa fa-trash-o" style="color:#657786; font-size: 20px" aria-hidden="true"></i>
 			</button>
 		</div>
 	</div>
