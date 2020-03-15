@@ -28,11 +28,12 @@ let id = 0;
 
 let countChar = () => {
 	let remainingChar = 140 - textArea.value.length;
-
 	if (remainingChar < 0) {
 		document.getElementById('charCountArea').innerHTML = `${remainingChar}`.fontcolor('red');
+
 	} else {
 		document.getElementById('charCountArea').innerHTML = `${remainingChar}`
+
 	}
 }
 
@@ -128,14 +129,14 @@ function like(a) {
 
 // Show on screen 
 let render = (array) => {
-	let htmlForTweet = array.map((item) => `<div class="tweet-wrap">
+	let htmlForTweet = array.map((item) => `<div class="tweet-wrap" style="border-radius:20px">
 	<div class="tweet-header">
-		<img src="https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png"
+		<img src="https://i1.sndcdn.com/avatars-000500544273-6kcyh0-t500x500.jpg"
 			alt="" class="avator">
 		<div class="tweet-header-info">
 			${appState.loggedInName} <span>@${appState.loggedInUser}</span><span> ${moment(item.date).fromNow()}
 			</span>
-			<p id="tweetText">🔥${item.contents}
+			<p id="tweetText" style="word-warp:break-word">🔥${item.contents}
 				</p>
 		</div>
 	</div>

@@ -1,5 +1,5 @@
 body {
-    background: #e6ecf0;
+    background: #15202b ;
     font-family: 'Asap', sans-serif;
     font-family: 'Roboto', sans-serif;
   
@@ -7,14 +7,48 @@ body {
   img {
     max-width:100%;
   }
+  .navbar {
+    background-color: #E0245E;
+  }
+
+  .navbar-brand {
+    font-weight: bold;
+  }
   .avator {
     border-radius:100px;
     width:60px;
     margin-right: 15px;
   }
+  .card {
+    border: none;
+  }
+  
+  .card-header {
+    background-color: #E0245E;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    border: none;
+  }
   
   #main {
     justify-content: center;
+  }
+
+  #inputTweetArea {
+    border-radius: 20px;
+  }
+
+  #leftBtn {
+    width: 50%;
+    text-align: left;
+    padding: 0;
+  }
+
+  #rightBtn {
+    width: 50%;
+    text-align: right;
+    padding: 0;
   }
   
   .tweet-wrap {
@@ -90,16 +124,22 @@ body {
   }
   
   .btn{
-      background-color: palevioletred;
+      background-color: #E0245E;
       border-style: none;
+      font-weight: bold;
+      color: white;
   }
   
   #charBadge{
-    background-color: palevioletred;
+    background-color: #E0245E;
+    position: relative;
+    left: -8px;
+    font-size: 1rem;
+    height: 100%;
   }
   
   a:link{
-    color: palevioletred;
+    color: #E0245E;
     text-decoration: none;
   }
 
