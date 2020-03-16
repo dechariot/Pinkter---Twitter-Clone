@@ -44,6 +44,9 @@ Time spent: **3** days spent in total.
 
 Describe any challenges encountered while building the app.
 
+#Coronavirus
+#hashtags
+
 ## License
 
     Copyright [2020] [Emily and Sang]
