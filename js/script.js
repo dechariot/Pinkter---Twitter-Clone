@@ -1,21 +1,21 @@
 let loadUserData = () => {
 	return (
-	  JSON.parse(localStorage.getItem("data")) || {
-		loggedInUser: "null",
-		loggedInName: "null"
-	  }
+		JSON.parse(localStorage.getItem("data")) || {
+			loggedInUser: "null",
+			loggedInName: "null"
+		}
 	);
-  };
+};
 
-  let appState = loadUserData();
+let appState = loadUserData();
 
-  const getData= async () => {
+const getData = async () => {
 
 	document.getElementById("displayHandle").innerText =
-	  `@${appState.loggedInUser}`;
-	  document.getElementById("displayName").innerText =
-	  `${appState.loggedInName}`;
-  }
+		`@${appState.loggedInUser}`;
+	document.getElementById("displayName").innerText =
+		`${appState.loggedInName}`;
+}
 
 getData();
 
@@ -46,7 +46,7 @@ textArea.addEventListener('input', countChar);
 //         "#([a-z0-9]+)"];
 // 	re = new RegExp(re.join('|'), "gi");
 // 	console.log(re)
-	
+
 
 
 //     return str.replace(re, function(match, url, www, mail, twitler){
@@ -58,11 +58,11 @@ textArea.addEventListener('input', countChar);
 //             return "<a href=\"mailto:" + mail + "\">" + mail + "</a>";
 //         if(twitler)
 // 			return "<a href=\"javascript:;" + "\" id =\""+ "hashTag"+"\">#" + twitler + "</a>";
-		
+
 // 		// return "<a href=\"javascript:;" + "\" onclick =\""+ `${searchHashtag("hi")}`+"\">#" + twitler + "</a>";
 // 		// return "<button\ onclick =\""+ searchHashtag("hi")+"\">#" + twitler + "</button>";
 // 		// shouldnt get here, but just in case
-	
+
 //         return match;
 // 	}); 
 // 	document.getElementById("hashTag").addEventListener("click", searchHashtag("hi"));
@@ -72,7 +72,7 @@ textArea.addEventListener('input', countChar);
 
 let addTweet = () => {
 	text = textArea.value;
-	
+
 	let tweet = {
 		id: id, // unique value 
 		contents: text,
@@ -126,7 +126,7 @@ let deleteTweet = (deleteId) => {
 
 //like Tweet
 function like(a) {
-	let index = tweetList.findIndex((item)=> item.id == a)
+	let index = tweetList.findIndex((item) => item.id == a)
 	const getTweet = tweetList[index];
 	getTweet.liked = !getTweet.liked;
 
@@ -138,7 +138,7 @@ function like(a) {
 
 // Show on screen 
 let render = (array) => {
-	array.sort((a,b)=> {
+	array.sort((a, b) => {
 		if (a.id > b.id) {
 			return -1;
 		}
@@ -221,8 +221,8 @@ let signOut = () => {
 	appState.loggedInUser = "";
 	window.open("index.html");
 	saveAppState(appState);
-  };
-  
+};
+
 
 
 
@@ -234,23 +234,23 @@ function searchHashtag(hashtag) {
 			return item;
 	});
 	console.log(hashtagList)
-render(hashtagList);
+	render(hashtagList);
 }
 
 function hashtagify(i) {
 	let index = tweetList.findIndex(item => item.id == i);
-  
+
 	let newValue = tweetList[index].contents.split(" ");
-  
+
 	let text = newValue.map(word => {
 
 		if (word[0] === "#") {
-		  tweetList[index].hashtags.push(word);
-		  return `
+			tweetList[index].hashtags.push(word);
+			return `
 				  <a  style="color:#E0245E" href ="#" onclick="searchHashtag('${word}')">${word}</a>            
 			  `;
 		} else return word;
-	  })
-	  .join(" ");
+	})
+		.join(" ");
 	return text;
-  }
+}

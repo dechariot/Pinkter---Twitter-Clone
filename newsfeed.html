@@ -18,8 +18,7 @@
     <div class="container-fluid" style="padding: 0;">
         <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" style="color: white;" href="#">
-                <img src="img/twitter-brands.svg" width="30" height="30"
-                    class="d-inline-block align-top" alt="">
+                <img src="img/twitter-brands.svg" width="30" height="30" class="d-inline-block align-top" alt="">
                 Pinkter
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -35,19 +34,21 @@
         <div class="sidebar m-5 d-none d-md-block">
             <div class="">
                 <div class="card " style="width: 18rem; text-align:center;border-radius: 20px;">
-                    <img class="card-img-top rounded-circle" style="width:60%; position: relative;left: 62px;padding-top: 20px;"
-                        src="https://i1.sndcdn.com/avatars-000500544273-6kcyh0-t500x500.jpg"
-                        alt="Card image cap">
+                    <img class="card-img-top rounded-circle"
+                        style="width:60%; position: relative;left: 62px;padding-top: 20px;"
+                        src="https://i1.sndcdn.com/avatars-000500544273-6kcyh0-t500x500.jpg" alt="Card image cap">
                     <div class="card-body">
-                        <h5 id = "displayName" class="card-title font-weight-bold"></h5>
-                        <h6 id = "displayHandle" class="card-title font-weight-bold"></h6>
-        
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                        <h5 id="displayName" class="card-title font-weight-bold"></h5>
+                        <h6 id="displayHandle" class="card-title font-weight-bold"></h6>
+
+                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. </p>
                         <a href="#" class="btn  text-white rounded-pill">Follow me</a>
                     </div>
                 </div>
             </div>
-            <button id = "addATweetLeft" onclick="addTweet()" type="button" style="border-radius: 30px; font-size: 1.1rem; font-weight:bold;"
+            <button id="addATweetLeft" onclick="addTweet()" type="button"
+                style="border-radius: 30px; font-size: 1.1rem; font-weight:bold;"
                 class="btn btn-lg btn-block mt-4 text-white ">Tweet</button>
 
             <div class="card mt-4" style="width: 18rem;">
@@ -68,23 +69,24 @@
             <div id="inputTweetArea" class="tweet-wrap">
                 <div class="d-flex">
                     <div class="col-xs">
-                        <img src="https://i1.sndcdn.com/avatars-000500544273-6kcyh0-t500x500.jpg"
-                            alt="" class="avator">
+                        <img src="https://i1.sndcdn.com/avatars-000500544273-6kcyh0-t500x500.jpg" alt="" class="avator">
                     </div>
                     <div class="col pr-0">
                         <textarea class="form-control w-100" id="contentsBox"
                             placeholder="What's happening?"></textarea>
                         <div class="container d-flex" style="padding: 1rem 0 0 0;">
-                        <div id="leftBtn">
-                        <div id="charBadge" class="badge badge-pill badge-primary ml-2" style="display: flex;align-items: center;width: 50%;justify-content: center;">
-                            <div id="charCountArea">140</div>
+                            <div id="leftBtn">
+                                <div id="charBadge" class="badge badge-pill badge-primary ml-2"
+                                    style="display: flex;align-items: center;width: 50%;justify-content: center;">
+                                    <div id="charCountArea">140</div>
+                                </div>
+                            </div>
+
+                            <div id="rightBtn">
+                                <button class="btn rounded-pill" id="addATweetMiddle" onclick="addTweet()"
+                                    style="width: 100%;">Tweet</button>
+                            </div>
                         </div>
-                        </div>
-                        
-                        <div id="rightBtn">
-                            <button class="btn rounded-pill" id= "addATweetMiddle" onclick="addTweet()" style="width: 100%;">Tweet</button>
-                        </div>
-                    </div>
                     </div>
                 </div>
                 <div class="d-flex justify-content-center mt-2">
@@ -92,7 +94,7 @@
                 </div>
             </div>
             <div id="tweetCards">
-            <!-- <div class="tweet-wrap">
+                <!-- <div class="tweet-wrap">
                 <div class="tweet-header">
                     <img src="https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png"
                         alt="" class="avator">
@@ -162,7 +164,7 @@
                     </div>
                 </div>
             </div> -->
-        </div>
+            </div>
         </div>
         <div class="sidebar m-5 d-none d-xl-block">
             <div class="card" style="width: 18rem;">
@@ -170,9 +172,9 @@
                     Who to Follow
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
+                    <li class="list-group-item"><a href="https://twitter.com/playboicarti" style="text-decoration: none;color: #E0245E;">@playboicarti</a></li>
+                    <li class="list-group-item"><a href="https://twitter.com/LILUZIVERT" style="text-decoration: none;color: #E0245E;">@LILUZIVERT</a></li>
+                    <li class="list-group-item"><a href="https://twitter.com/NARUTO_kousiki" style="text-decoration: none;color: #E0245E;">@NARUTO_kousiki</a></li>
                 </ul>
             </div>
             <div class="card mt-5" style="width: 18rem;">
@@ -180,9 +182,9 @@
                     Trending now
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Cras justo odio</li>
-                    <li class="list-group-item">Dapibus ac facilisis in</li>
-                    <li class="list-group-item">Vestibulum at eros</li>
+                    <li class="list-group-item"><a href="https://twitter.com/search?q=covid-19&src=typeahead_click" style="text-decoration: none; color: #E0245E;">#Covid-19</a></li>
+                    <li class="list-group-item"><a href="https://twitter.com/search?q=%23coronavirus&src=trend_click" style="text-decoration: none; color: #E0245E;">#coronavirus</a></li>
+                    <li class="list-group-item"><a href="https://twitter.com/search?q=%22iHeart%20BTS%22&src=trend_click" style="text-decoration: none; color: #E0245E;">#iHeartBTS</a></li>
                 </ul>
             </div>
         </div>
