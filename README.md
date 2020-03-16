@@ -10,7 +10,7 @@ One or two sentence summary of your project.
 
 Here's a walkthrough of implemented user stories.
 
-<img src='https://recordit.co/u50iyH9SEQ' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://media.giphy.com/media/KGfeLkFQhvGePLqqSn/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 
 ## User Stories
@@ -31,11 +31,11 @@ The following **required** functionalities are completed (this is a sample):
 
 
 The following **optional** features are implemented:
-[ ] Download and upload the list of tweets using the myjson api, as shown in class.
-[ ] Users can mention other users. Any string that starts with @username will be highlighted in blue.
-[ ] The user can click on a hashtag, and only other tweets with that hashtag are shown.
-[x] When the user deletes a tweet, all retweets should be deleted.
-[ ] Any tweet with an image URL will have the image automatically expanded in the tweet.
+* [ ] Download and upload the list of tweets using the myjson api, as shown in class.
+* [ ] Users can mention other users. Any string that starts with @username will be highlighted in blue.
+* [ ] The user can click on a hashtag, and only other tweets with that hashtag are shown.
+* [x] When the user deletes a tweet, all retweets should be deleted.
+* [ ] Any tweet with an image URL will have the image automatically expanded in the tweet.
 
 ## Time Spent and Lessons Learned
 
