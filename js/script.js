@@ -85,6 +85,8 @@ let addTweet = () => {
 	console.log(tweet)
 	render(tweetList);
 	id++;
+	textArea.value ="";
+	document.getElementById("charCountArea").innerHTML=140;
 
 }
 
